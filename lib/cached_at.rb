@@ -21,7 +21,7 @@ module CachedAt
   end
 
   def touch(name = nil)
-    update_column :cached_at, current_time_from_proper_timezone
+    update_column :cached_at, Time.current
   end
 
   module ClassMethods
@@ -32,6 +32,6 @@ module CachedAt
 
   private
   def _set_cached_at
-    self.cached_at = current_time_from_proper_timezone if new_record? || self.changed?
+    self.cached_at = Time.current if new_record? || self.changed?
   end
 end
